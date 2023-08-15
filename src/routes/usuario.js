@@ -2,7 +2,7 @@ const express = require('express');
 const conectarBancoDados = require('../../middlewares/conectarBD');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const EsquemaTarefa = require('../models/tarefas');
+const EsquemaUsuario = require('../models/usuario');
 
 
 router.post('/criar', conectarBancoDados, async function(req, res) {
@@ -11,7 +11,7 @@ router.post('/criar', conectarBancoDados, async function(req, res) {
     let {nome, email, senha} = req.body;
     const numeroVezesHash = 10;
     const senhaHash = await bcrypt.hash(senha, numeroVezesHash);
-    const respostaBD = await EsquemaTarefa.create({nome, email, senha: senhaHash});
+    const respostaBD = await EsquemaUsuario.create({nome, email, senha: senhaHash});
 
     res.status(200).json({
       status: "OK",
@@ -19,6 +19,7 @@ router.post('/criar', conectarBancoDados, async function(req, res) {
       resposta: respostaBD
     })
   } catch (error) {
+
     return tratarErrosEsperados(res, error)
   }
 });
