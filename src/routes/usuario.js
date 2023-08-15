@@ -3,6 +3,7 @@ const conectarBancoDados = require('../../middlewares/conectarBD');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const EsquemaUsuario = require('../models/usuario');
+const tratarErrosEsperados = require('../functions/tratarErrosEsperados');
 
 
 router.post('/criar', conectarBancoDados, async function(req, res) {
@@ -19,7 +20,9 @@ router.post('/criar', conectarBancoDados, async function(req, res) {
       resposta: respostaBD
     })
   } catch (error) {
-
+    if(String(error).includes("email_1 dup key")){
+      return tratarErrosEsperados(res, "Error: Já existe uma conta com esse email.")
+    }
     return tratarErrosEsperados(res, error)
   }
 });
