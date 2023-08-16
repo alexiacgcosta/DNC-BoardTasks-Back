@@ -7,9 +7,9 @@ const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = { customCssUrl: '/swagger-ui.css' };
 const routes = require('./src/routes.js');
-const authDocProducao = require('./middlewares/authDoc.js');
 const app = express();
 require('dotenv').config();
+const authDocProducao = require('./src/middlewares/authDoc.js');
 
 
 //configuração do express

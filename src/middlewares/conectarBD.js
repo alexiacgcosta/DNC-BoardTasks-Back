@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const tratarErrosEsperados = require('../src/functions/tratarErrosEsperados.js');
+const tratarErrosEsperados = require('../functions/tratarErrosEsperados.js');
 
 
 async function conectarBancoDados(req = null, res = null, next = null) {

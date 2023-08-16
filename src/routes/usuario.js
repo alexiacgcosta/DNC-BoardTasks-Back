@@ -1,13 +1,12 @@
 const express = require('express');
-const conectarBancoDados = require('../../middlewares/conectarBD');
+const conectarBancoDados = require('../middlewares/conectarBD');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const EsquemaUsuario = require('../models/usuario');
 const tratarErrosEsperados = require('../functions/tratarErrosEsperados');
 
-
-router.post('/criar', conectarBancoDados, async function(req, res) {
+router.post('/criar' , conectarBancoDados, async function(req, res) {
   try {
     // #swagger.tags = ['Usuario']
     let {nome, email, senha} = req.body;
